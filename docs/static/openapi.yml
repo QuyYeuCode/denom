@@ -46069,9 +46069,11 @@ definitions:
         type: string
   QuyYeuCode.denom.denom.MsgCreateDenomResponse:
     type: object
-  QuyYeuCode.denom.denom.MsgDeleteDenomResponse:
+  QuyYeuCode.denom.denom.MsgMintAndSendTokensResponse:
     type: object
   QuyYeuCode.denom.denom.MsgUpdateDenomResponse:
+    type: object
+  QuyYeuCode.denom.denom.MsgUpdateOwnerResponse:
     type: object
   QuyYeuCode.denom.denom.Params:
     type: object

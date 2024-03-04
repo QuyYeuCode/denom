@@ -1,11 +1,18 @@
 package keeper
 
 import (
+	"context"
+
 	"github.com/QuyYeuCode/denom/x/denom/types"
 )
 
 type msgServer struct {
 	Keeper
+}
+
+// UpdateDenom implements types.MsgServer.
+func (k *msgServer) UpdateDenom(context.Context, *types.MsgUpdateDenom) (*types.MsgUpdateDenomResponse, error) {
+	panic("unimplemented")
 }
 
 // NewMsgServerImpl returns an implementation of the MsgServer interface

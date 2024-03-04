@@ -4,15 +4,17 @@ import { StdFee } from "@cosmjs/launchpad";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
-import { MsgCreateDenom } from "./types/denom/tx";
-import { MsgDeleteDenom } from "./types/denom/tx";
 import { MsgUpdateDenom } from "./types/denom/tx";
+import { MsgCreateDenom } from "./types/denom/tx";
+import { MsgMintAndSendTokens } from "./types/denom/tx";
+import { MsgUpdateOwner } from "./types/denom/tx";
 
 
 const types = [
-  ["/QuyYeuCode.denom.denom.MsgCreateDenom", MsgCreateDenom],
-  ["/QuyYeuCode.denom.denom.MsgDeleteDenom", MsgDeleteDenom],
   ["/QuyYeuCode.denom.denom.MsgUpdateDenom", MsgUpdateDenom],
+  ["/QuyYeuCode.denom.denom.MsgCreateDenom", MsgCreateDenom],
+  ["/QuyYeuCode.denom.denom.MsgMintAndSendTokens", MsgMintAndSendTokens],
+  ["/QuyYeuCode.denom.denom.MsgUpdateOwner", MsgUpdateOwner],
   
 ];
 export const MissingWalletError = new Error("wallet is required");
@@ -45,9 +47,10 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
 
   return {
     signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
-    msgCreateDenom: (data: MsgCreateDenom): EncodeObject => ({ typeUrl: "/QuyYeuCode.denom.denom.MsgCreateDenom", value: MsgCreateDenom.fromPartial( data ) }),
-    msgDeleteDenom: (data: MsgDeleteDenom): EncodeObject => ({ typeUrl: "/QuyYeuCode.denom.denom.MsgDeleteDenom", value: MsgDeleteDenom.fromPartial( data ) }),
     msgUpdateDenom: (data: MsgUpdateDenom): EncodeObject => ({ typeUrl: "/QuyYeuCode.denom.denom.MsgUpdateDenom", value: MsgUpdateDenom.fromPartial( data ) }),
+    msgCreateDenom: (data: MsgCreateDenom): EncodeObject => ({ typeUrl: "/QuyYeuCode.denom.denom.MsgCreateDenom", value: MsgCreateDenom.fromPartial( data ) }),
+    msgMintAndSendTokens: (data: MsgMintAndSendTokens): EncodeObject => ({ typeUrl: "/QuyYeuCode.denom.denom.MsgMintAndSendTokens", value: MsgMintAndSendTokens.fromPartial( data ) }),
+    msgUpdateOwner: (data: MsgUpdateOwner): EncodeObject => ({ typeUrl: "/QuyYeuCode.denom.denom.MsgUpdateOwner", value: MsgUpdateOwner.fromPartial( data ) }),
     
   };
 };

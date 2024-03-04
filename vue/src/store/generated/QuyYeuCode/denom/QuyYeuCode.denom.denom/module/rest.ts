@@ -11,9 +11,11 @@
 
 export type DenomMsgCreateDenomResponse = object;
 
-export type DenomMsgDeleteDenomResponse = object;
+export type DenomMsgMintAndSendTokensResponse = object;
 
 export type DenomMsgUpdateDenomResponse = object;
+
+export type DenomMsgUpdateOwnerResponse = object;
 
 export interface DenomQueryAllDenomResponse {
   denom?: DenomdenomDenom[];

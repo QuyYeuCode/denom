@@ -39,6 +39,7 @@ func TestDenomGet(t *testing.T) {
 		)
 	}
 }
+
 // func TestDenomRemove(t *testing.T) {
 // 	keeper, ctx := keepertest.DenomKeeper(t)
 // 	items := createNDenom(keeper, ctx, 10)

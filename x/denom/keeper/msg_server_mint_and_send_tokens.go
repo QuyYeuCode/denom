@@ -8,37 +8,6 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
-func (k msgServer) CreateDenom(goCtx context.Context, msg *types.MsgCreateDenom) (*types.MsgCreateDenomResponse, error) {
-	ctx := sdk.UnwrapSDKContext(goCtx)
-
-	// Check if the value already exists
-	_, isFound := k.GetDenom(
-		ctx,
-		msg.Denom,
-	)
-	if isFound {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "index already set")
-	}
-
-	var denom = types.Denom{
-		Owner:              msg.Owner,
-		Denom:              msg.Denom,
-		Description:        msg.Description,
-		Ticker:             msg.Ticker,
-		Precision:          msg.Precision,
-		Url:                msg.Url,
-		MaxSupply:          msg.MaxSupply,
-	//	Supply:             msg.Supply,
-		CanChangeMaxSupply: msg.CanChangeMaxSupply,
-	}
-
-	k.SetDenom(
-		ctx,
-		denom,
-	)
-	return &types.MsgCreateDenomResponse{}, nil
-}
-
 func (k msgServer) MintAndSendTokens(goCtx context.Context, msg *types.MsgMintAndSendTokens) (*types.MsgMintAndSendTokensResponse, error) {
     ctx := sdk.UnwrapSDKContext(goCtx)
 
@@ -94,28 +63,3 @@ func (k msgServer) MintAndSendTokens(goCtx context.Context, msg *types.MsgMintAn
     )
     return &types.MsgMintAndSendTokensResponse{}, nil
 }
-
-// func (k msgServer) DeleteDenom(goCtx context.Context, msg *types.MsgDeleteDenom) (*types.MsgDeleteDenomResponse, error) {
-// 	ctx := sdk.UnwrapSDKContext(goCtx)
-
-// 	// Check if the value exists
-// 	valFound, isFound := k.GetDenom(
-// 		ctx,
-// 		msg.Denom,
-// 	)
-// 	if !isFound {
-// 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
-// 	}
-
-// 	// Checks if the the msg owner is the same as the current owner
-// 	if msg.Owner != valFound.Owner {
-// 		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
-// 	}
-
-// 	k.RemoveDenom(
-// 		ctx,
-// 		msg.Denom,
-// 	)
-
-// 	return &types.MsgDeleteDenomResponse{}, nil
-// }
