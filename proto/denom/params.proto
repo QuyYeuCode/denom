@@ -1,0 +1,12 @@
+syntax = "proto3";
+package QuyYeuCode.denom.denom;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/QuyYeuCode/denom/x/denom/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  
+}

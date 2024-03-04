@@ -1,0 +1,16 @@
+syntax = "proto3";
+package QuyYeuCode.denom.denom;
+
+import "gogoproto/gogo.proto";
+import "denom/params.proto";
+import "denom/denom.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "github.com/QuyYeuCode/denom/x/denom/types";
+
+// GenesisState defines the denom module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  repeated Denom denomList = 2 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}
