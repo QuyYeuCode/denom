@@ -125,31 +125,31 @@ func CmdUpdateDenom() *cobra.Command {
 	return cmd
 }
 
-func CmdDeleteDenom() *cobra.Command {
-	cmd := &cobra.Command{
-		Use:   "delete-denom [denom]",
-		Short: "Delete a Denom",
-		Args:  cobra.ExactArgs(1),
-		RunE: func(cmd *cobra.Command, args []string) (err error) {
-			indexDenom := args[0]
+// func CmdDeleteDenom() *cobra.Command {
+// 	cmd := &cobra.Command{
+// 		Use:   "delete-denom [denom]",
+// 		Short: "Delete a Denom",
+// 		Args:  cobra.ExactArgs(1),
+// 		RunE: func(cmd *cobra.Command, args []string) (err error) {
+// 			indexDenom := args[0]
 
-			clientCtx, err := client.GetClientTxContext(cmd)
-			if err != nil {
-				return err
-			}
+// 			clientCtx, err := client.GetClientTxContext(cmd)
+// 			if err != nil {
+// 				return err
+// 			}
 
-			msg := types.NewMsgDeleteDenom(
-				clientCtx.GetFromAddress().String(),
-				indexDenom,
-			)
-			if err := msg.ValidateBasic(); err != nil {
-				return err
-			}
-			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
-		},
-	}
+// 			msg := types.NewMsgDeleteDenom(
+// 				clientCtx.GetFromAddress().String(),
+// 				indexDenom,
+// 			)
+// 			if err := msg.ValidateBasic(); err != nil {
+// 				return err
+// 			}
+// 			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
+// 		},
+// 	}
 
-	flags.AddTxFlagsToCmd(cmd)
+// 	flags.AddTxFlagsToCmd(cmd)
 
-	return cmd
-}
+// 	return cmd
+// }
